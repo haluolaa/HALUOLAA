@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>HALOULA | ملابس بناتي بجميع المقاسات</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;900&family=Poppins:wght@400;600;700;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+</head>
+<body>
+
+<!-- NAVBAR -->
+<header class="navbar" id="navbar">
+  <div class="navbar-inner container">
+    <button class="menu-btn" id="menuBtn"><i class="fas fa-bars"></i></button>
+    <a href="index.html" class="logo">HALOULA</a>
+    <nav class="nav-links" id="navLinks">
+      <a href="#home" data-i18n="nav_home">الرئيسية</a>
+      <a href="#categories" data-i18n="nav_categories">الأقسام</a>
+      <a href="#products" data-i18n="nav_products">المنتجات</a>
+      <a href="#about" data-i18n="nav_about">من نحن</a>
+      <a href="#contact" data-i18n="nav_contact">تواصل معنا</a>
+    </nav>
+    <div class="nav-icons">
+      <button class="lang-toggle" id="langToggle" onclick="toggleLang()">EN</button>
+      <button class="icon-btn" onclick="toggleCart()"><i class="fas fa-shopping-bag"></i><span class="cart-badge" id="cartBadge">0</span></button>
+      <a href="https://wa.me/201021102607" target="_blank" class="icon-btn whatsapp-btn"><i class="fab fa-whatsapp"></i></a>
+    </div>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-3d-scene">
+    <div class="floating-shape s1"></div>
+    <div class="floating-shape s2"></div>
+    <div class="floating-shape s3"></div>
+  </div>
+  <div class="hero-content container">
+    <div class="hero-text">
+      <span class="hero-badge" data-i18n="hero_badge">✨ كولكشن 2025</span>
+      <h1>HALOULA<br/><span data-i18n="hero_subtitle">مصممة أزياء</span></h1>
+      <div class="hero-btns">
+        <a href="#products" class="btn btn-primary" data-i18n="hero_btn1">تسوقي الآن</a>
+        <a href="#categories" class="btn btn-outline" data-i18n="hero_btn2">استعرضي الأقسام</a>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="hero-card-3d">
+        <div class="dress-mockup">
+          <img src="https://images.unsplash.com/photo-1612336307429-8a898d10e223?w=400&q=80" alt="HALOULA Fashion" />
+          <div class="card-badge-float" data-i18n="card_badge">جديد 🌸</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee-bar">
+  <div class="marquee-track" id="marqueeTrack">
+    <span>✦ فساتين</span><span>✦ بلوزات</span><span>✦ بناطيل</span><span>✦ أطقم</span>
+    <span>✦ تيشيرتات</span><span>✦ جيبات</span><span>✦ أطفال</span><span>✦ شيفون</span>
+    <span>✦ فساتين</span><span>✦ بلوزات</span><span>✦ بناطيل</span><span>✦ أطقم</span>
+    <span>✦ تيشيرتات</span><span>✦ جيبات</span><span>✦ أطفال</span><span>✦ شيفون</span>
+  </div>
+</div>
+
+<!-- CATEGORIES -->
+<section class="categories section" id="categories">
+  <div class="container">
+    <div class="section-head">
+      <h2 data-i18n="cat_title">الأقسام</h2>
+      <p data-i18n="cat_desc">اختاري من مجموعة متنوعة من الملابس</p>
+    </div>
+    <div class="cat-grid">
+      <div class="cat-card" onclick="filterProducts('فساتين')">
+        <div class="cat-img"><img src="https://images.unsplash.com/photo-1595777457583-95e059d581b8?w=400&q=80" alt="فساتين"/></div>
+        <div class="cat-overlay"><h3 data-i18n="cat_dresses">فساتين</h3></div>
+      </div>
+      <div class="cat-card" onclick="filterProducts('بلوزات')">
+        <div class="cat-img"><img src="https://images.unsplash.com/photo-1434389677669-e08b4cac3105?w=400&q=80" alt="بلوزات"/></div>
+        <div class="cat-overlay"><h3 data-i18n="cat_tops">بلوزات</h3></div>
+      </div>
+      <div class="cat-card" onclick="filterProducts('بناطيل')">
+        <div class="cat-img"><img src="https://images.unsplash.com/photo-1541099649105-f69ad21f3246?w=400&q=80" alt="بناطيل"/></div>
+        <div class="cat-overlay"><h3 data-i18n="cat_pants">بناطيل</h3></div>
+      </div>
+      <div class="cat-card" onclick="filterProducts('أطقم')">
+        <div class="cat-img"><img src="https://images.unsplash.com/photo-1469334031218-e382a71b716b?w=400&q=80" alt="أطقم"/></div>
+        <div class="cat-overlay"><h3 data-i18n="cat_sets">أطقم</h3></div>
+      </div>
+      <div class="cat-card" onclick="filterProducts('تيشيرتات')">
+        <div class="cat-img"><img src="https://images.unsplash.com/photo-1485462537746-965f33f7f6a7?w=400&q=80" alt="تيشيرتات"/></div>
+        <div class="cat-overlay"><h3 data-i18n="cat_tshirts">تيشيرتات</h3></div>
+      </div>
+      <div class="cat-card" onclick="filterProducts('أطفال')">
+        <div class="cat-img"><img src="https://images.unsplash.com/photo-1471286174890-9c112ffca5b4?w=400&q=80" alt="أطفال"/></div>
+        <div class="cat-overlay"><h3 data-i18n="cat_kids">أطفال</h3></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRODUCTS -->
+<section class="products section" id="products">
+  <div class="container">
+    <div class="section-head">
+      <h2 data-i18n="prod_title">المنتجات</h2>
+      <p data-i18n="prod_desc">استعرضي أحدث الموديلات</p>
+    </div>
+    <div class="filter-bar">
+      <button class="filter-btn active" data-cat="all" onclick="filterProducts('all')"><span data-i18n="filter_all">الكل</span></button>
+      <button class="filter-btn" data-cat="فساتين" onclick="filterProducts('فساتين')"><span data-i18n="cat_dresses">فساتين</span></button>
+      <button class="filter-btn" data-cat="بلوزات" onclick="filterProducts('بلوزات')"><span data-i18n="cat_tops">بلوزات</span></button>
+      <button class="filter-btn" data-cat="بناطيل" onclick="filterProducts('بناطيل')"><span data-i18n="cat_pants">بناطيل</span></button>
+      <button class="filter-btn" data-cat="أطقم" onclick="filterProducts('أطقم')"><span data-i18n="cat_sets">أطقم</span></button>
+      <button class="filter-btn" data-cat="تيشيرتات" onclick="filterProducts('تيشيرتات')"><span data-i18n="cat_tshirts">تيشيرتات</span></button>
+      <button class="filter-btn" data-cat="أطفال" onclick="filterProducts('أطفال')"><span data-i18n="cat_kids">أطفال</span></button>
+    </div>
+    <div class="products-grid" id="productsGrid"></div>
+  </div>
+</section>
+
+<!-- FEATURES -->
+<section class="features section">
+  <div class="container">
+    <div class="features-grid">
+      <div class="feature-card">
+        <div class="feature-icon">📦</div>
+        <h4 data-i18n="feat1_title">توصيل لكل مصر</h4>
+        <p data-i18n="feat1_desc">شحن سريع لجميع المحافظات</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">👗</div>
+        <h4 data-i18n="feat2_title">جميع المقاسات</h4>
+        <p data-i18n="feat2_desc">من S حتى 6XL للكبيرات والصغار</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">💎</div>
+        <h4 data-i18n="feat3_title">جودة مضمونة</h4>
+        <p data-i18n="feat3_desc">خامات مريحة وراقية</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">💬</div>
+        <h4 data-i18n="feat4_title">دعم واتساب</h4>
+        <p data-i18n="feat4_desc">ردنا سريع على استفساراتك</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="about section" id="about">
+  <div class="container">
+    <div class="about-grid">
+      <div class="about-text">
+        <span class="section-tag" data-i18n="about_tag">من نحن</span>
+        <h2 data-i18n="about_title">براند مصري بنفس عصري</h2>
+        <p data-i18n="about_desc">HALOULA هو براند ملابس بناتي مصري يقدم أحدث الموديلات بجميع المقاسات وبألوان تناسب كل ذوق.</p>
+        <ul class="about-list">
+          <li><i class="fas fa-check-circle"></i> <span data-i18n="about_l1">موديلات متجددة أول بأول</span></li>
+          <li><i class="fas fa-check-circle"></i> <span data-i18n="about_l2">أسعار مناسبة للجميع</span></li>
+          <li><i class="fas fa-check-circle"></i> <span data-i18n="about_l3">مقاسات من XS لـ 6XL</span></li>
+          <li><i class="fas fa-check-circle"></i> <span data-i18n="about_l4">توصيل لكل مصر</span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact section" id="contact">
+  <div class="container">
+    <div class="section-head">
+      <h2 data-i18n="contact_title">تواصلي معنا</h2>
+      <p data-i18n="contact_desc">سعيدين نساعدك في أي وقت</p>
+    </div>
+    <div class="contact-grid">
+      <a href="https://wa.me/201021102607" target="_blank" class="contact-card whatsapp">
+        <i class="fab fa-whatsapp"></i>
+        <h4 data-i18n="contact_wa">واتساب</h4>
+        <p data-i18n="contact_wa_desc">ابعتيلنا رسالة مباشرة</p>
+      </a>
+      <a href="https://ipn.eg/S/mohandehaben932/instapay/9FLI7y" target="_blank" class="contact-card instapay">
+        <i class="fas fa-mobile-alt"></i>
+        <h4 data-i18n="contact_pay">InstaPay</h4>
+        <p data-i18n="contact_pay_desc">mohandehaben932@instapay</p>
+      </a>
+      <div class="contact-card info">
+        <i class="fas fa-clock"></i>
+        <h4 data-i18n="contact_hours">أوقات العمل</h4>
+        <p data-i18n="contact_hours_desc">كل يوم من 9ص لـ 11م</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- REVIEWS -->
+<section class="reviews section" id="reviews">
+  <div class="container">
+    <div class="section-head">
+      <h2 data-i18n="reviews_title">آراء عملائنا</h2>
+      <p data-i18n="reviews_desc">أكثر من 500 عميلة سعيدة 🌸</p>
+      <div class="overall-rating">
+        <div class="rating-big">4.9</div>
+        <div>
+          <div class="stars-row">⭐⭐⭐⭐⭐</div>
+          <div class="rating-count" data-i18n="reviews_count">بناءً على 500+ تقييم</div>
+        </div>
+      </div>
+    </div>
+    <div class="reviews-grid" id="reviewsGrid"></div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="logo">HALOULA</div>
+        <p data-i18n="footer_desc">براند ملابس بناتي مصري — جميع المقاسات والألوان</p>
+      </div>
+      <div class="footer-links">
+        <h5 data-i18n="footer_links">روابط سريعة</h5>
+        <a href="#home" data-i18n="nav_home">الرئيسية</a>
+        <a href="#categories" data-i18n="nav_categories">الأقسام</a>
+        <a href="#products" data-i18n="nav_products">المنتجات</a>
+        <a href="#about" data-i18n="nav_about">من نحن</a>
+      </div>
+      <div class="footer-social">
+        <h5 data-i18n="footer_follow">تابعينا</h5>
+        <div>
+          <a href="https://wa.me/201021102607" target="_blank"><i class="fab fa-whatsapp"></i></a>
+          <a href="#" target="_blank"><i class="fab fa-instagram"></i></a>
+          <a href="#" target="_blank"><i class="fab fa-facebook"></i></a>
+          <a href="#" target="_blank"><i class="fab fa-tiktok"></i></a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p data-i18n="footer_copy">© 2026 HALOULAA. جميع الحقوق محفوظة.</p>
+    </div>
+  </div>
+</footer>
+
+<!-- CART SIDEBAR -->
+<div class="cart-overlay" id="cartOverlay" onclick="toggleCart()"></div>
+<div class="cart-sidebar" id="cartSidebar">
+  <div class="cart-header">
+    <h3><i class="fas fa-shopping-bag"></i> <span data-i18n="cart_title">سلة التسوق</span></h3>
+    <button onclick="toggleCart()"><i class="fas fa-times"></i></button>
+  </div>
+  <div class="cart-items" id="cartItems"><p class="cart-empty" data-i18n="cart_empty">السلة فارغة 🛍️</p></div>
+  <div class="cart-footer" id="cartFooter" style="display:none">
+    <div class="cart-total"><span data-i18n="cart_total">الإجمالي</span>: <span id="cartTotal">0</span> <span data-i18n="currency">ج.م</span></div>
+    <button class="btn btn-primary w-full" onclick="checkout()" data-i18n="cart_checkout">🛒 إتمام الطلب</button>
+  </div>
+</div>
+
+<!-- ORDER MODAL -->
+<div class="modal-overlay" id="modalOverlay">
+  <div class="order-modal">
+    <button class="modal-close" onclick="closeModal()"><i class="fas fa-times"></i></button>
+    <h3 data-i18n="order_title">🛍️ إتمام الطلب</h3>
+    <div id="orderSummary"></div>
+    <div class="payment-section">
+      <h4 data-i18n="payment_title">اختاري طريقة الدفع</h4>
+      <div class="payment-options">
+        <label class="payment-opt">
+          <input type="radio" name="payment" value="instapay" checked/>
+          <span><i class="fas fa-mobile-alt"></i> <span data-i18n="pay_instapay">InstaPay</span></span>
+        </label>
+        <label class="payment-opt">
+          <input type="radio" name="payment" value="whatsapp"/>
+          <span><i class="fab fa-whatsapp"></i> <span data-i18n="pay_whatsapp">تأكيد عبر واتساب</span></span>
+        </label>
+        <label class="payment-opt">
+          <input type="radio" name="payment" value="cash"/>
+          <span><i class="fas fa-money-bill"></i> <span data-i18n="pay_cash">كاش عند الاستلام</span></span>
+        </label>
+      </div>
+    </div>
+    <div class="customer-form">
+      <input type="text" id="custName" data-i18n-placeholder="field_name" placeholder="اسمك الكريم *" required/>
+      <input type="tel" id="custPhone" data-i18n-placeholder="field_phone" placeholder="رقم موبايلك *" required/>
+      <input type="text" id="custAddress" data-i18n-placeholder="field_address" placeholder="عنوانك (المحافظة + التفاصيل) *" required/>
+      <textarea id="custNotes" data-i18n-placeholder="field_notes" placeholder="ملاحظات إضافية (اختياري)"></textarea>
+    </div>
+    <button class="btn btn-primary w-full" onclick="submitOrder()" data-i18n="confirm_order">✅ تأكيد الطلب</button>
+  </div>
+</div>
+
+<!-- WHATSAPP FLOAT -->
+<a href="https://wa.me/201021102607" target="_blank" class="whatsapp-float">
+  <i class="fab fa-whatsapp"></i>
+</a>
+
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox" onclick="closeLightbox()">
+  <button class="lightbox-close" onclick="closeLightbox()"><i class="fas fa-times"></i></button>
+  <img id="lightboxImg" src="" alt="" onclick="event.stopPropagation()"/>
+</div>
+
+<script src="js/supabase-config.js"></script>
+<script src="js/i18n.js"></script>
+<script type="module" src="js/site-settings.js"></script>
+<script type="module" src="js/app.js"></script>
+</body>
+</html>
