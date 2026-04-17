@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover"/>
+  <meta name="theme-color" content="#0f0d0a"/>
+  <meta name="mobile-web-app-capable" content="yes"/>
+  <meta name="apple-mobile-web-app-capable" content="yes"/>
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
+  <title>HALOULA — Fashion Designer</title>
+  <meta name="description" content="HALOULA Fashion Designer — Latest Egyptian fashion trends for every girl. All sizes XS to 6XL, all colors. Shop dresses, tops, pants, sets & more. Fast delivery across Egypt."/>
+  <meta name="keywords" content="HALOULA, fashion, Egyptian fashion, dresses, tops, pants, sets, all sizes, fashion designer"/>
+  <meta property="og:title" content="HALOULA — Fashion Designer"/>
+  <meta property="og:description" content="Latest Egyptian fashion trends for every girl. All sizes, all colors. Fast delivery across Egypt."/>
+  <meta property="og:image" content="images/logo.jpeg"/>
+  <meta property="og:type" content="website"/>
+  <meta name="twitter:card" content="summary_large_image"/>
+  <meta name="twitter:title" content="HALOULA — Fashion Designer"/>
+  <meta name="twitter:description" content="Latest Egyptian fashion trends for every girl."/>
+  <link rel="icon" type="image/jpeg" href="images/logo.jpeg"/>
+  <link rel="apple-touch-icon" href="images/logo.jpeg"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;900&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <link rel="stylesheet" href="css/style.css"/>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<header class="navbar" id="navbar">
+  <div class="nav-inner">
+    <button class="hamburger" id="hamburger">
+      <span></span><span></span><span></span>
+    </button>
+    <a href="index.html" class="nav-logo-wrap">
+      <img src="images/logo.jpeg" alt="HALOULA" class="nav-logo" onclick="openLightbox('images/logo.jpeg','HALOULA')" onerror="this.style.display='none';document.getElementById('navLogoText').style.display='block'"/>
+      <span class="nav-logo-text" id="navLogoText">HALOULA</span>
+    </a>
+    <button class="cart-btn" onclick="toggleCart()">
+      <i class="fas fa-shopping-bag"></i>
+      <span class="cart-badge" id="cartBadge">0</span>
+    </button>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-scene">
+    <div class="blob b1"></div>
+    <div class="blob b2"></div>
+    <div class="blob b3"></div>
+  </div>
+  <div class="hero-inner container">
+    <div class="hero-text">
+      <span class="hero-pill">✨ Collection 2026</span>
+      <h1>HALOULA<br/><span>Fashion Designer</span></h1>
+      <p>Latest trends for every girl — all sizes, all colors</p>
+      <div class="hero-btns">
+        <a href="#shop" class="btn btn-primary">Shop Now</a>
+        <a href="#shop" class="btn btn-outline">Browse All</a>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="hero-card">
+        <img src="https://images.unsplash.com/photo-1612336307429-8a898d10e223?w=500&q=80" alt="HALOULA Fashion"/>
+        <div class="hero-card-tag">New ✦</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee-bar">
+  <div class="marquee-track">
+    <span>✦ Dresses</span><span>✦ Tops</span><span>✦ Pants</span><span>✦ Sets</span>
+    <span>✦ T-Shirts</span><span>✦ Skirts</span><span>✦ Kids</span><span>✦ Chiffon</span>
+    <span>✦ Dresses</span><span>✦ Tops</span><span>✦ Pants</span><span>✦ Sets</span>
+    <span>✦ T-Shirts</span><span>✦ Skirts</span><span>✦ Kids</span><span>✦ Chiffon</span>
+  </div>
+</div>
+
+<!-- SHOP -->
+<section class="shop-section" id="shop">
+  <div class="shop-layout">
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-logo-wrap">
+        <img src="images/logo.jpeg" alt="HALOULA" class="sidebar-logo" onclick="openLightbox('images/logo.jpeg','HALOULA')" onerror="this.style.display='none'"/>
+        <div class="sidebar-brand">HALOULA</div>
+        <div class="sidebar-tagline">Fashion Designer</div>
+      </div>
+      <div class="sidebar-divider"></div>
+      <h4 class="sidebar-cat-title">Categories</h4>
+      <ul class="sidebar-cats" id="sidebarCats">
+        <li class="active" data-cat="all" onclick="filterCat(this,'all')"><i class="fas fa-th-large"></i> All Products</li>
+        <li data-cat="فساتين" onclick="filterCat(this,'فساتين')"><i class="fas fa-female"></i> Dresses</li>
+        <li data-cat="بلوزات" onclick="filterCat(this,'بلوزات')"><i class="fas fa-tshirt"></i> Tops</li>
+        <li data-cat="بناطيل" onclick="filterCat(this,'بناطيل')"><i class="fas fa-stream"></i> Pants</li>
+        <li data-cat="أطقم" onclick="filterCat(this,'أطقم')"><i class="fas fa-layer-group"></i> Sets</li>
+        <li data-cat="تيشيرتات" onclick="filterCat(this,'تيشيرتات')"><i class="fas fa-tshirt"></i> T-Shirts</li>
+        <li data-cat="جيبات" onclick="filterCat(this,'جيبات')"><i class="fas fa-circle"></i> Skirts</li>
+        <li data-cat="أطفال" onclick="filterCat(this,'أطفال')"><i class="fas fa-child"></i> Kids</li>
+      </ul>
+      <div class="sidebar-divider"></div>
+      <div class="sidebar-social">
+        <a href="https://www.instagram.com/haloula_designer?igsh=N3p5MzRlMmQyMGE3" target="_blank" class="social-pill ig">
+          <i class="fab fa-instagram"></i> Instagram
+        </a>
+        <a href="https://www.tiktok.com/@haloulaafashiondesigner" target="_blank" class="social-pill tt">
+          <i class="fab fa-tiktok"></i> TikTok
+        </a>
+      </div>
+      <div class="sidebar-divider"></div>
+      <div style="padding:10px 15px 20px">
+        <button class="sidebar-review-trigger" onclick="openReviewModal()">
+          <i class="fas fa-star"></i> Leave a Review
+        </button>
+      </div>
+    </aside>
+    <div class="sidebar-overlay" id="sidebarOverlay" onclick="closeSidebar()"></div>
+
+    <!-- PRODUCTS -->
+    <div class="products-wrap">
+      <div class="products-topbar">
+        <div>
+          <h2 class="cat-title" id="catTitle">All Products</h2>
+          <span class="cat-count" id="catCount"></span>
+        </div>
+        <select class="sort-sel" id="sortSel" onchange="sortProducts()">
+          <option value="default">Sort: Default</option>
+          <option value="price-asc">Price: Low → High</option>
+          <option value="price-desc">Price: High → Low</option>
+          <option value="newest">Newest</option>
+        </select>
+      </div>
+      <div class="products-grid" id="productsGrid"></div>
+      <div id="loadMoreWrap" style="display:none;text-align:center;padding:30px 0">
+        <button class="btn btn-outline" onclick="loadMore()">Load More</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+<!-- FEATURES -->
+<section class="features section">
+  <div class="container">
+    <div class="features-grid">
+      <div class="feature-card">
+        <div class="feature-icon">📦</div>
+        <h4>Delivery Across Egypt</h4>
+        <p>Fast shipping to all governorates</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">👗</div>
+        <h4>All Sizes</h4>
+        <p>From XS to 6XL for everyone</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">💎</div>
+        <h4>Premium Quality</h4>
+        <p>Comfortable & elegant fabrics</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">✨</div>
+        <h4>New Arrivals</h4>
+        <p>Fresh styles every week</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+<!-- REVIEWS -->
+<section class="reviews section" id="reviews">
+  <div class="container">
+    <div class="section-head">
+      <h2>Customer Reviews</h2>
+      <p>500+ happy customers 🌸</p>
+      <div class="rating-badge">
+        <span class="rating-num">4.9</span>
+        <div><div class="gold-stars">★★★★★</div><small>Based on 500+ reviews</small></div>
+      </div>
+    </div>
+    <div class="reviews-grid" id="reviewsGrid"></div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <img src="images/logo.jpeg" alt="HALOULA" class="footer-logo" onclick="openLightbox('images/logo.jpeg','HALOULA')" onerror="this.style.display='none'"/>
+        <div class="footer-name">HALOULA</div>
+        <p>Egyptian Fashion Brand — All Sizes & Colors</p>
+        <div class="footer-socials">
+          <a href="https://www.instagram.com/haloula_designer?igsh=N3p5MzRlMmQyMGE3" target="_blank" class="social-pill ig"><i class="fab fa-instagram"></i> Instagram</a>
+          <a href="https://www.tiktok.com/@haloulaafashiondesigner" target="_blank" class="social-pill tt"><i class="fab fa-tiktok"></i> TikTok</a>
+        </div>
+      </div>
+      <div class="footer-links">
+        <h5>Quick Links</h5>
+        <a href="#home">Home</a>
+        <a href="#shop">Shop</a>
+        <a href="#reviews">Reviews</a>
+      </div>
+    </div>
+    <div class="footer-bottom">© 2026 HALOULA. All rights reserved.</div>
+  </div>
+</footer>
+
+<!-- CART -->
+<div class="cart-overlay" id="cartOverlay" onclick="toggleCart()"></div>
+<div class="cart-sidebar" id="cartSidebar">
+  <div class="cart-header">
+    <h3><i class="fas fa-shopping-bag"></i> Your Bag</h3>
+    <button onclick="toggleCart()"><i class="fas fa-times"></i></button>
+  </div>
+  <div class="cart-items" id="cartItems"><p class="cart-empty">Your bag is empty 🛍️</p></div>
+  <div class="cart-footer" id="cartFooter" style="display:none">
+    <div class="cart-total">Subtotal: <span id="cartTotal">0</span> EGP</div>
+    <button class="btn btn-primary w-full" onclick="checkout()">Checkout</button>
+  </div>
+</div>
+
+<!-- ORDER MODAL -->
+<div class="modal-overlay" id="modalOverlay">
+  <div class="order-modal">
+    <button class="modal-close" onclick="closeModal()"><i class="fas fa-times"></i></button>
+
+    <!-- STEP 1: Customer Details -->
+    <div id="step1">
+      <h3>Your Details</h3>
+      <div id="orderSummaryPreview"></div>
+      <div class="customer-form">
+        <input type="text" id="custName" placeholder="Full Name *" required/>
+        <input type="tel" id="custPhone" placeholder="Phone Number * (e.g. 01012345678)" required/>
+        <input type="text" id="custAddress" placeholder="Address (City + Details) *" required/>
+        <textarea id="custNotes" placeholder="Notes (Optional)"></textarea>
+      </div>
+      <button class="btn btn-primary w-full" onclick="submitDetails()">Continue to Payment →</button>
+    </div>
+
+    <!-- STEP 2: Payment -->
+    <div id="step2" style="display:none">
+      <h3>Complete Payment</h3>
+      <div id="orderSummaryFinal"></div>
+      <p style="text-align:center;color:#a89880;font-size:13px;margin-bottom:16px">Your order is saved ✅ — Now choose how to pay:</p>
+      <div class="payment-methods">
+
+        <!-- InstaPay -->
+        <div class="pay-card">
+          <div class="pay-card-head">
+            <img src="https://i.ibb.co/gFtK0qQB/insta.png" alt="InstaPay" class="pay-logo"/>
+            <div>
+              <strong>InstaPay</strong>
+              <span>mohandehaben932@instapay</span>
+            </div>
+          </div>
+          <div class="pay-card-info">
+            <div class="pay-info-row">
+              <span>Account</span>
+              <span class="pay-val">mohandehaben932@instapay</span>
+            </div>
+          </div>
+          <div class="pay-card-btns">
+            <button class="pay-action-btn" onclick="copyText('mohandehaben932@instapay')">
+              <i class="fas fa-copy"></i> Copy Account
+            </button>
+            <a href="https://ipn.eg/S/mohandehaben932/instapay/9FLI7y" target="_blank" class="pay-action-btn primary">
+              <i class="fas fa-external-link-alt"></i> Open InstaPay
+            </a>
+          </div>
+        </div>
+
+        <!-- Vodafone Cash -->
+        <div class="pay-card">
+          <div class="pay-card-head">
+            <img src="https://i.ibb.co/0y6yKR65/image.png" alt="Vodafone Cash" class="pay-logo"/>
+            <div>
+              <strong>Vodafone Cash</strong>
+              <span>Transfer to number below</span>
+            </div>
+          </div>
+          <div class="pay-card-info">
+            <div class="pay-info-row">
+              <span>Number</span>
+              <span class="pay-val">01021102607</span>
+            </div>
+          </div>
+          <div class="pay-card-btns">
+            <button class="pay-action-btn" onclick="copyText('01021102607')">
+              <i class="fas fa-copy"></i> Copy Number
+            </button>
+            <a href="vodafonecash://send?msisdn=01021102607" class="pay-action-btn primary" onclick="openVFCash(event)">
+              <i class="fas fa-mobile-alt"></i> Open App
+            </a>
+          </div>
+        </div>
+
+      </div>
+      <button class="btn btn-primary w-full" onclick="confirmPaid()" style="margin-top:16px">
+        ✅ I've Paid — Confirm Order
+      </button>
+      <button class="btn btn-outline w-full" onclick="backToStep1()" style="margin-top:8px">← Back</button>
+    </div>
+
+  </div>
+</div>
+
+<!-- REVIEW MODAL -->
+<div class="modal-overlay" id="reviewModalOverlay">
+  <div class="order-modal">
+    <button class="modal-close" onclick="closeReviewModal()"><i class="fas fa-times"></i></button>
+    <h3>⭐ Leave a Review</h3>
+    <form id="reviewForm" onsubmit="submitReview(event)">
+      <div class="customer-form">
+        <input type="text" id="rv_name" placeholder="Your Name *" required/>
+        <input type="tel" id="rv_phone" placeholder="Phone (Optional)"/>
+        <input type="text" id="rv_product" placeholder="Which product did you buy?"/>
+        <div class="review-stars-row" id="starRating">
+          <span class="rstar active" data-val="1">★</span>
+          <span class="rstar active" data-val="2">★</span>
+          <span class="rstar active" data-val="3">★</span>
+          <span class="rstar active" data-val="4">★</span>
+          <span class="rstar active" data-val="5">★</span>
+        </div>
+        <input type="hidden" id="rv_rating" value="5"/>
+        <textarea id="rv_comment" placeholder="Your review *" required></textarea>
+      </div>
+      <button type="submit" class="btn btn-primary w-full" id="reviewSubmitBtn">Submit Review ✨</button>
+    </form>
+    <div id="reviewSuccess" style="display:none;text-align:center;padding:20px 0">
+      <div style="font-size:50px;margin-bottom:12px">🎉</div>
+      <h3 style="color:var(--gold);margin-bottom:8px">Thank you!</h3>
+      <p style="color:var(--muted);margin-bottom:16px">Your review will appear after approval.</p>
+      <button class="btn btn-outline" onclick="closeReviewModal()">Close</button>
+    </div>
+  </div>
+</div>
+
+<!-- BACK TO TOP -->
+<button class="back-to-top" id="backToTop" onclick="scrollToTop()" aria-label="Back to top">
+  <i class="fas fa-chevron-up"></i>
+</button>
+
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox" onclick="closeLightbox()">
+  <button class="lightbox-close" onclick="closeLightbox()"><i class="fas fa-times"></i></button>
+  <img id="lightboxImg" src="" alt="" onclick="event.stopPropagation()"/>
+</div>
+
+<script src="js/supabase-config.js"></script>
+<script type="module" src="js/site-settings.js"></script>
+<script type="module" src="js/app.js"></script>
+</body>
+</html>
