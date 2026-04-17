@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"/>
+  <title>HALOULA — Fashion Designer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;900&family=Poppins:wght@300;400;500;600;700;900&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <link rel="stylesheet" href="css/style.css"/>
+  <link rel="stylesheet" href="css/store.css"/>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<header class="navbar" id="navbar">
+  <div class="navbar-inner container">
+    <button class="menu-btn" id="menuBtn"><i class="fas fa-bars"></i></button>
+    <a href="index.html" class="logo-wrap">
+      <img src="images/WhatsApp Image 2026-04-17 at 2.33.46 PM.jpeg" alt="HALOULA" class="logo-img" onerror="this.style.display='none';document.getElementById('logoFallback').style.display='block'"/>
+      <span class="logo" id="logoFallback" style="display:none">HALOULA</span>
+    </a>
+    <div class="nav-icons">
+      <button class="icon-btn" onclick="toggleCart()">
+        <i class="fas fa-shopping-bag"></i>
+        <span class="cart-badge" id="cartBadge">0</span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-3d-scene">
+    <div class="floating-shape s1"></div>
+    <div class="floating-shape s2"></div>
+    <div class="floating-shape s3"></div>
+  </div>
+  <div class="hero-content container">
+    <div class="hero-text">
+      <span class="hero-badge">✨ Collection 2025</span>
+      <h1>HALOULA<br/><span>Fashion Designer</span></h1>
+      <div class="hero-btns">
+        <a href="#shop" class="btn btn-primary">Shop Now</a>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="hero-card-3d">
+        <div class="dress-mockup">
+          <img src="https://images.unsplash.com/photo-1612336307429-8a898d10e223?w=400&q=80" alt="HALOULA Fashion"/>
+          <div class="card-badge-float">New 🌸</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee-bar">
+  <div class="marquee-track">
+    <span>✦ Dresses</span><span>✦ Tops</span><span>✦ Pants</span><span>✦ Sets</span>
+    <span>✦ T-Shirts</span><span>✦ Skirts</span><span>✦ Kids</span><span>✦ Chiffon</span>
+    <span>✦ Dresses</span><span>✦ Tops</span><span>✦ Pants</span><span>✦ Sets</span>
+    <span>✦ T-Shirts</span><span>✦ Skirts</span><span>✦ Kids</span><span>✦ Chiffon</span>
+  </div>
+</div>
+
+<!-- SHOP SECTION -->
+<section class="shop-section" id="shop">
+  <div class="shop-layout">
+
+    <!-- SIDEBAR -->
+    <aside class="shop-sidebar" id="shopSidebar">
+      <div class="sidebar-inner">
+        <div class="sidebar-head">
+          <h3>Categories</h3>
+          <button class="sidebar-close" id="sidebarClose"><i class="fas fa-times"></i></button>
+        </div>
+        <ul class="cat-list">
+          <li class="cat-item active" data-cat="all" onclick="filterCat(this,'all')">
+            <i class="fas fa-th"></i> All Products
+          </li>
+          <li class="cat-item" data-cat="فساتين" onclick="filterCat(this,'فساتين')">
+            <i class="fas fa-female"></i> Dresses
+          </li>
+          <li class="cat-item" data-cat="بلوزات" onclick="filterCat(this,'بلوزات')">
+            <i class="fas fa-tshirt"></i> Tops
+          </li>
+          <li class="cat-item" data-cat="بناطيل" onclick="filterCat(this,'بناطيل')">
+            <i class="fas fa-stream"></i> Pants
+          </li>
+          <li class="cat-item" data-cat="أطقم" onclick="filterCat(this,'أطقم')">
+            <i class="fas fa-layer-group"></i> Sets
+          </li>
+          <li class="cat-item" data-cat="تيشيرتات" onclick="filterCat(this,'تيشيرتات')">
+            <i class="fas fa-tshirt"></i> T-Shirts
+          </li>
+          <li class="cat-item" data-cat="جيبات" onclick="filterCat(this,'جيبات')">
+            <i class="fas fa-circle"></i> Skirts
+          </li>
+          <li class="cat-item" data-cat="أطفال" onclick="filterCat(this,'أطفال')">
+            <i class="fas fa-child"></i> Kids
+          </li>
+        </ul>
+      </div>
+    </aside>
+    <div class="sidebar-overlay" id="sidebarOverlay" onclick="closeSidebar()"></div>
+
+    <!-- PRODUCTS -->
+    <div class="shop-main">
+      <div class="shop-topbar">
+        <div>
+          <h2 id="currentCatTitle">All Products</h2>
+          <span class="products-count" id="productsCount"></span>
+        </div>
+        <select class="sort-select" id="sortSelect" onchange="sortProducts()">
+          <option value="default">Default</option>
+          <option value="price-asc">Price: Low to High</option>
+          <option value="price-desc">Price: High to Low</option>
+          <option value="newest">Newest</option>
+        </select>
+      </div>
+      <div class="products-grid" id="productsGrid"></div>
+      <div id="loadMoreWrap" style="display:none;text-align:center;padding:30px 0">
+        <button class="btn btn-outline" onclick="loadMore()">Load More</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURES -->
+<section class="features section">
+  <div class="container">
+    <div class="features-grid">
+      <div class="feature-card">
+        <div class="feature-icon">📦</div>
+        <h4>Delivery Across Egypt</h4>
+        <p>Fast shipping to all governorates</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">👗</div>
+        <h4>All Sizes</h4>
+        <p>From S to 6XL for all</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">💎</div>
+        <h4>Quality Guaranteed</h4>
+        <p>Premium comfortable fabrics</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">✨</div>
+        <h4>New Arrivals</h4>
+        <p>Fresh styles every week</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- REVIEWS -->
+<section class="reviews section">
+  <div class="container">
+    <div class="section-head">
+      <h2>Customer Reviews</h2>
+      <p>Over 500 happy customers 🌸</p>
+      <div class="overall-rating">
+        <div class="rating-big">4.9</div>
+        <div>
+          <div class="stars-row">⭐⭐⭐⭐⭐</div>
+          <div class="rating-count">Based on 500+ reviews</div>
+        </div>
+      </div>
+    </div>
+    <div class="reviews-grid" id="reviewsGrid"></div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <img src="images/WhatsApp Image 2026-04-17 at 2.33.46 PM.jpeg" alt="HALOULA" class="footer-logo" onerror="this.style.display='none'"/>
+        <div class="logo" style="margin-top:8px">HALOULA</div>
+        <p>Egyptian Fashion Brand — All Sizes & Colors</p>
+      </div>
+      <div class="footer-links">
+        <h5>Quick Links</h5>
+        <a href="#home">Home</a>
+        <a href="#shop">Shop</a>
+      </div>
+      <div class="footer-social">
+        <h5>Follow Us</h5>
+        <div class="social-btns">
+          <a href="https://www.instagram.com/haloula_designer?igsh=N3p5MzRlMmQyMGE3" target="_blank" class="social-btn instagram">
+            <i class="fab fa-instagram"></i>
+            <span>Instagram</span>
+          </a>
+          <a href="https://www.tiktok.com/@haloulaafashiondesigner?_r=1&_t=ZS-95cBMiRwI5s" target="_blank" class="social-btn tiktok">
+            <i class="fab fa-tiktok"></i>
+            <span>TikTok</span>
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2025 HALOULA. All rights reserved.</p>
+    </div>
+  </div>
+</footer>
+
+<!-- CART SIDEBAR -->
+<div class="cart-overlay" id="cartOverlay" onclick="toggleCart()"></div>
+<div class="cart-sidebar" id="cartSidebar">
+  <div class="cart-header">
+    <h3><i class="fas fa-shopping-bag"></i> Your Bag</h3>
+    <button onclick="toggleCart()"><i class="fas fa-times"></i></button>
+  </div>
+  <div class="cart-items" id="cartItems"><p class="cart-empty">Your bag is empty 🛍️</p></div>
+  <div class="cart-footer" id="cartFooter" style="display:none">
+    <div class="cart-total">Subtotal: <span id="cartTotal">0</span> EGP</div>
+    <button class="btn btn-primary w-full" onclick="checkout()">Checkout</button>
+  </div>
+</div>
+
+<!-- ORDER MODAL -->
+<div class="modal-overlay" id="modalOverlay">
+  <div class="order-modal">
+    <button class="modal-close" onclick="closeModal()"><i class="fas fa-times"></i></button>
+    <h3>Complete Your Order</h3>
+    <div id="orderSummary"></div>
+    <div class="payment-section">
+      <h4>Payment Method</h4>
+      <div class="payment-options">
+        <label class="payment-opt">
+          <input type="radio" name="payment" value="instapay" checked/>
+          <span><i class="fas fa-mobile-alt"></i> InstaPay</span>
+        </label>
+        <label class="payment-opt">
+          <input type="radio" name="payment" value="cash"/>
+          <span><i class="fas fa-money-bill"></i> Cash on Delivery</span>
+        </label>
+      </div>
+    </div>
+    <div class="customer-form">
+      <input type="text" id="custName" placeholder="Full Name *" required/>
+      <input type="tel" id="custPhone" placeholder="Phone Number *" required/>
+      <input type="text" id="custAddress" placeholder="Address (City + Details) *" required/>
+      <textarea id="custNotes" placeholder="Additional Notes (Optional)"></textarea>
+    </div>
+    <button class="btn btn-primary w-full" onclick="submitOrder()">✅ Confirm Order</button>
+  </div>
+</div>
+
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox" onclick="closeLightbox()">
+  <button class="lightbox-close" onclick="closeLightbox()"><i class="fas fa-times"></i></button>
+  <img id="lightboxImg" src="" alt="" onclick="event.stopPropagation()"/>
+</div>
+
+<script src="js/supabase-config.js"></script>
+<script type="module" src="js/store.js"></script>
+</body>
+</html>
