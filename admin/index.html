@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover"/>
+  <meta name="theme-color" content="#1a1410"/>
+  <meta name="apple-mobile-web-app-capable" content="yes"/>
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
+  <title>HALOULAA - لوحة التحكم</title>
+  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;900&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <link rel="stylesheet" href="admin.css"/>
+</head>
+<body>
+
+<!-- LOGIN SCREEN -->
+<div id="loginScreen" class="login-screen">
+  <div class="login-box">
+    <div class="login-logo">HALOULAA</div>
+    <div class="login-subtitle">لوحة التحكم</div>
+    <div class="login-form">
+      <input type="password" id="adminPass" placeholder="كلمة المرور" />
+      <button onclick="adminLogin()">دخول <i class="fas fa-sign-in-alt"></i></button>
+      <p class="login-hint" id="loginError"></p>
+    </div>
+  </div>
+</div>
+
+<!-- DASHBOARD -->
+<div id="dashboard" class="dashboard d-none">
+
+  <!-- MOBILE HEADER -->
+  <header class="mobile-header">
+    <button class="mob-menu-btn" id="mobMenuBtn" onclick="toggleMobSidebar()">
+      <i class="fas fa-bars"></i>
+    </button>
+    <div class="mob-logo">HALOULAA</div>
+    <button class="logout-btn" onclick="adminLogout()" style="border:none;background:none;color:#ff4757;font-size:18px;padding:4px 8px;cursor:pointer;">
+      <i class="fas fa-sign-out-alt"></i>
+    </button>
+  </header>
+
+  <!-- SIDEBAR OVERLAY (mobile) -->
+  <div class="mob-sidebar-overlay" id="mobSidebarOverlay" onclick="toggleMobSidebar()"></div>
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar" id="adminSidebar">
+    <div class="sidebar-logo">HALOULAA</div>
+    <nav class="sidebar-nav">
+      <a href="#" class="nav-item active" onclick="showSection('overview')">
+        <i class="fas fa-chart-pie"></i> <span>نظرة عامة</span>
+      </a>
+      <a href="#" class="nav-item" onclick="showSection('orders')">
+        <i class="fas fa-shopping-bag"></i> <span>الطلبات</span>
+      </a>
+      <a href="#" class="nav-item" onclick="showSection('products')">
+        <i class="fas fa-tshirt"></i> <span>المنتجات</span>
+      </a>
+      <a href="#" class="nav-item" onclick="showSection('add-product')">
+        <i class="fas fa-plus-circle"></i> <span>إضافة منتج</span>
+      </a>
+      <a href="#" class="nav-item" onclick="showSection('reviews-admin')">
+        <i class="fas fa-star"></i> <span>التقييمات</span>
+      </a>
+      <a href="#" class="nav-item" onclick="showSection('discounts')">
+        <i class="fas fa-tag"></i> <span>الخصومات</span>
+      </a>
+      <a href="#" class="nav-item" onclick="showSection('customize')">
+        <i class="fas fa-paint-brush"></i> <span>تخصيص</span>
+      </a>
+      <a href="#" class="nav-item" onclick="showSection('settings')">
+        <i class="fas fa-cog"></i> <span>الإعدادات</span>
+      </a>
+    </nav>
+    <a href="../index.html" target="_blank" class="nav-item view-site">
+      <i class="fas fa-external-link-alt"></i> <span>عرض الموقع</span>
+    </a>
+  </aside>
+
+  <!-- MAIN CONTENT -->
+  <main class="main-content">
+    <!-- HEADER -->
+    <header class="dash-header">
+      <h2 id="sectionTitle">نظرة عامة</h2>
+      <div class="header-actions">
+        <span class="admin-badge"><i class="fas fa-crown"></i> أدمن</span>
+        <button class="logout-btn" onclick="adminLogout()"><i class="fas fa-sign-out-alt"></i></button>
+      </div>
+    </header>
+
+    <!-- OVERVIEW -->
+    <section id="section-overview" class="dash-section">
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-icon pink"><i class="fas fa-tshirt"></i></div>
+          <div class="stat-info">
+            <div class="stat-num" id="totalProducts">0</div>
+            <div class="stat-label">إجمالي المنتجات</div>
+          </div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon green"><i class="fas fa-shopping-bag"></i></div>
+          <div class="stat-info">
+            <div class="stat-num" id="totalOrders">0</div>
+            <div class="stat-label">الطلبات</div>
+          </div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon gold"><i class="fas fa-tag"></i></div>
+          <div class="stat-info">
+            <div class="stat-num" id="totalDiscounts">0</div>
+            <div class="stat-label">الخصومات النشطة</div>
+          </div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon blue"><i class="fas fa-eye"></i></div>
+          <div class="stat-info">
+            <div class="stat-num">مفعّل</div>
+            <div class="stat-label">حالة الموقع</div>
+          </div>
+        </div>
+      </div>
+      <div class="recent-section">
+        <h3>أحدث المنتجات</h3>
+        <div id="recentProductsList"></div>
+      </div>
+    </section>
+
+    <!-- PRODUCTS LIST -->
+    <section id="section-products" class="dash-section d-none">
+      <div class="section-actions">
+        <input type="text" id="searchProducts" placeholder="🔍 ابحث عن منتج..." oninput="searchAdminProducts()" class="search-input"/>
+        <select id="filterCategory" onchange="filterAdminProducts()" class="select-input">
+          <option value="">كل الأقسام</option>
+          <option>فساتين</option><option>بلوزات</option><option>بناطيل</option>
+          <option>أطقم</option><option>تيشيرتات</option><option>جيبات</option><option>أطفال</option>
+        </select>
+      </div>
+      <div class="products-table-wrap">
+        <table class="admin-table">
+          <thead>
+            <tr><th>#</th><th>صورة</th><th>الاسم</th><th>القسم</th><th>السعر</th><th>المقاسات</th><th>إجراءات</th></tr>
+          </thead>
+          <tbody id="adminProductsTable"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- ADD/EDIT PRODUCT -->
+    <section id="section-add-product" class="dash-section d-none">
+      <div class="form-card">
+        <h3 id="formTitle">➕ إضافة منتج جديد</h3>
+        <input type="hidden" id="editProductId"/>
+        <div class="form-grid">
+          <div class="form-group">
+            <label>اسم المنتج بالعربي *</label>
+            <input type="text" id="pName" placeholder="مثال: فستان شيفون وردي"/>
+          </div>
+          <div class="form-group">
+            <label>اسم المنتج بالإنجليزي</label>
+            <input type="text" id="pNameEn" placeholder="e.g. Pink Chiffon Dress"/>
+          </div>
+          <div class="form-group">
+            <label>القسم *</label>
+            <select id="pCategory">
+              <option value="">اختاري القسم</option>
+              <option>فساتين</option><option>بلوزات</option><option>بناطيل</option>
+              <option>أطقم</option><option>تيشيرتات</option><option>جيبات</option><option>أطفال</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>السعر (ج.م) *</label>
+            <input type="number" id="pPrice" placeholder="مثال: 450"/>
+          </div>
+          <div class="form-group">
+            <label>السعر القديم (اختياري)</label>
+            <input type="number" id="pOldPrice" placeholder="مثال: 600"/>
+          </div>
+          <div class="form-group full">
+            <label>صورة المنتج *</label>
+            <div class="upload-area">
+              <label class="upload-btn" id="uploadLabel" for="imageFile">
+                📸 اختاري صورة أو ارفعي من جهازك
+              </label>
+              <input type="file" id="imageFile" accept="image/*" style="display:none" onchange="handleImageUpload(this)"/>
+              <div id="uploadProgress" style="display:none;margin-top:10px;">
+                <div style="background:#f0f0f0;border-radius:20px;height:10px;overflow:hidden;">
+                  <div id="uploadProgressBar" style="height:100%;background:linear-gradient(135deg,#e91e8c,#ff6eb4);border-radius:20px;width:0%;transition:width .2s;"></div>
+                </div>
+                <div id="uploadProgressText" style="text-align:center;font-size:13px;color:#888;margin-top:5px;">0%</div>
+              </div>
+              <img id="imagePreview" style="display:none;width:120px;height:120px;object-fit:contain;border-radius:12px;margin-top:10px;border:3px solid #e91e8c;cursor:zoom-in;" onclick="openLightboxAdmin(this.src)"/>
+              <input type="url" id="pImage" placeholder="أو الصق رابط الصورة هنا..."/>
+            </div>
+          </div>
+          <div class="form-group full">
+            <label>وصف المنتج</label>
+            <textarea id="pDescription" placeholder="وصف مختصر للمنتج..."></textarea>
+          </div>
+          <div class="form-group full">
+            <label>المقاسات المتاحة (اضغطي على المقاس لتحديده)</label>
+            <div class="sizes-picker" id="sizesPicker">
+              <span class="size-option" onclick="toggleSize(this)">XS</span>
+              <span class="size-option" onclick="toggleSize(this)">S</span>
+              <span class="size-option" onclick="toggleSize(this)">M</span>
+              <span class="size-option" onclick="toggleSize(this)">L</span>
+              <span class="size-option" onclick="toggleSize(this)">XL</span>
+              <span class="size-option" onclick="toggleSize(this)">2XL</span>
+              <span class="size-option" onclick="toggleSize(this)">3XL</span>
+              <span class="size-option" onclick="toggleSize(this)">4XL</span>
+              <span class="size-option" onclick="toggleSize(this)">5XL</span>
+              <span class="size-option" onclick="toggleSize(this)">6XL</span>
+              <span class="size-option" onclick="toggleSize(this)">32</span>
+              <span class="size-option" onclick="toggleSize(this)">34</span>
+              <span class="size-option" onclick="toggleSize(this)">36</span>
+              <span class="size-option" onclick="toggleSize(this)">38</span>
+              <span class="size-option" onclick="toggleSize(this)">40</span>
+              <span class="size-option" onclick="toggleSize(this)">42</span>
+              <span class="size-option" onclick="toggleSize(this)">44</span>
+              <span class="size-option" onclick="toggleSize(this)">2 سنة</span>
+              <span class="size-option" onclick="toggleSize(this)">4 سنة</span>
+              <span class="size-option" onclick="toggleSize(this)">6 سنة</span>
+              <span class="size-option" onclick="toggleSize(this)">8 سنة</span>
+              <span class="size-option" onclick="toggleSize(this)">10 سنة</span>
+              <span class="size-option" onclick="toggleSize(this)">12 سنة</span>
+            </div>
+            <input type="hidden" id="pSizes"/>
+          </div>
+          <div class="form-group full">
+            <label>الألوان المتاحة (اختاري أو ابحثي)</label>
+            <div class="colors-section">
+              <div class="colors-search-wrap">
+                <input type="text" id="colorSearch" placeholder="🔍 ابحثي عن لون..." oninput="searchColors(this.value)" class="color-search-input"/>
+                <div class="color-input-wrap">
+                  <input type="color" id="customColorPicker" onchange="addCustomColor(this.value)" title="اختاري لون مخصص"/>
+                  <label for="customColorPicker" class="custom-color-btn">+ لون مخصص</label>
+                </div>
+              </div>
+              <div class="colors-grid" id="colorsPicker"></div>
+              <div class="selected-colors-wrap">
+                <span class="selected-colors-label">الألوان المختارة:</span>
+                <div class="selected-colors" id="selectedColors"></div>
+              </div>
+            </div>
+            <input type="hidden" id="pColors"/>
+          </div>
+          <div class="form-group">
+            <label>الشارة</label>
+            <select id="pBadge">
+              <option value="">بدون شارة</option>
+              <option value="new">جديد</option>
+              <option value="sale">خصم</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-actions">
+          <button class="btn-admin-primary" onclick="saveProduct()">
+            <i class="fas fa-save"></i> حفظ المنتج
+          </button>
+          <button class="btn-admin-cancel" onclick="clearProductForm()">
+            <i class="fas fa-times"></i> إلغاء
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- DISCOUNTS -->
+    <section id="section-discounts" class="dash-section d-none">
+      <div class="form-card">
+        <h3>🏷️ إضافة خصم</h3>
+        <div class="form-grid">
+          <div class="form-group">
+            <label>كود الخصم</label>
+            <input type="text" id="dCode" placeholder="HALOULA20"/>
+          </div>
+          <div class="form-group">
+            <label>نسبة الخصم (%)</label>
+            <input type="number" id="dPercent" placeholder="20" min="1" max="100"/>
+          </div>
+          <div class="form-group">
+            <label>تاريخ الانتهاء</label>
+            <input type="date" id="dExpiry"/>
+          </div>
+        </div>
+        <button class="btn-admin-primary" onclick="addDiscount()">
+          <i class="fas fa-plus"></i> إضافة الكود
+        </button>
+      </div>
+      <div class="discounts-list" id="discountsList"></div>
+    </section>
+
+    <!-- ORDERS -->
+    <section id="section-orders" class="dash-section d-none">
+      <div class="orders-topbar">
+        <div class="orders-filters">
+          <button class="order-filter-btn active" onclick="filterOrders('all',this)">الكل</button>
+          <button class="order-filter-btn" onclick="filterOrders('awaiting_payment',this)">في انتظار الدفع</button>
+          <button class="order-filter-btn" onclick="filterOrders('pending',this)">جديد ✅</button>
+          <button class="order-filter-btn" onclick="filterOrders('processing',this)">قيد التجهيز</button>
+          <button class="order-filter-btn" onclick="filterOrders('shipped',this)">تم الشحن</button>
+          <button class="order-filter-btn" onclick="filterOrders('delivered',this)">تم التسليم</button>
+          <button class="order-filter-btn" onclick="filterOrders('cancelled',this)">ملغي</button>
+        </div>
+        <button class="btn-admin-primary small" onclick="loadOrders()"><i class="fas fa-sync"></i> تحديث</button>
+      </div>
+      <div id="ordersList"></div>
+    </section>
+
+    <!-- REVIEWS ADMIN -->
+    <section id="section-reviews-admin" class="dash-section d-none">
+      <div class="orders-topbar">
+        <div class="orders-filters">
+          <button class="order-filter-btn active" onclick="filterReviews('all',this)">All</button>
+          <button class="order-filter-btn" onclick="filterReviews('pending',this)">Pending</button>
+          <button class="order-filter-btn" onclick="filterReviews('approved',this)">Approved</button>
+          <button class="order-filter-btn" onclick="filterReviews('rejected',this)">Rejected</button>
+        </div>
+        <button class="btn-admin-primary small" onclick="loadReviews()"><i class="fas fa-sync"></i> Refresh</button>
+      </div>
+      <div id="reviewsList"></div>
+    </section>
+
+    <!-- CUSTOMIZE -->
+    <section id="section-customize" class="dash-section d-none">
+      <div class="customize-header">
+        <h3>🎨 تخصيص الموقع</h3>
+        <div class="customize-actions">
+          <button class="btn-admin-primary" onclick="saveCustomize()"><i class="fas fa-save"></i> حفظ التغييرات</button>
+          <button class="btn-admin-cancel" onclick="resetCustomize()"><i class="fas fa-undo"></i> إعادة تعيين</button>
+        </div>
+      </div>
+
+      <div class="customize-grid">
+
+        <!-- COLORS -->
+        <div class="customize-card">
+          <h4>
+            <i class="fas fa-palette"></i> الألوان
+            <button class="btn-random-palette" onclick="generateRandomPalette()" title="توليد ألوان عشوائية متناسقة">
+              <i class="fas fa-random"></i> توليد عشوائي
+            </button>
+          </h4>
+          <div class="color-control">
+            <label>اللون الأساسي</label>
+            <div class="color-input-row">
+              <input type="color" id="c_primary" value="#e91e8c" oninput="previewColor('primary',this.value)"/>
+              <input type="text" id="c_primary_hex" value="#e91e8c" oninput="syncColorFromText('primary',this.value)" placeholder="#e91e8c"/>
+              <input type="text" id="c_primary_search" placeholder="ابحث عن لون..." oninput="searchNamedColor('primary',this.value)" class="color-name-search"/>
+            </div>
+            <div class="color-gradient-bar" id="grad_primary"></div>
+          </div>
+          <div class="color-control">
+            <label>اللون الثانوي</label>
+            <div class="color-input-row">
+              <input type="color" id="c_secondary" value="#ff6eb4" oninput="previewColor('secondary',this.value)"/>
+              <input type="text" id="c_secondary_hex" value="#ff6eb4" oninput="syncColorFromText('secondary',this.value)" placeholder="#ff6eb4"/>
+              <input type="text" id="c_secondary_search" placeholder="ابحث عن لون..." oninput="searchNamedColor('secondary',this.value)" class="color-name-search"/>
+            </div>
+            <div class="color-gradient-bar" id="grad_secondary"></div>
+          </div>
+          <div class="color-control">
+            <label>اللون الداكن</label>
+            <div class="color-input-row">
+              <input type="color" id="c_dark" value="#1a1a2e" oninput="previewColor('dark',this.value)"/>
+              <input type="text" id="c_dark_hex" value="#1a1a2e" oninput="syncColorFromText('dark',this.value)" placeholder="#1a1a2e"/>
+            </div>
+          </div>
+          <div class="color-control">
+            <label>لون الخلفية</label>
+            <div class="color-input-row">
+              <input type="color" id="c_bg" value="#ffffff" oninput="previewColor('bg',this.value)"/>
+              <input type="text" id="c_bg_hex" value="#ffffff" oninput="syncColorFromText('bg',this.value)" placeholder="#ffffff"/>
+            </div>
+          </div>
+          <div class="color-control">
+            <label>خلفية الهيرو</label>
+            <div class="color-input-row">
+              <input type="color" id="c_hero_bg" value="#fff0f7" oninput="previewColor('hero_bg',this.value)"/>
+              <input type="text" id="c_hero_bg_hex" value="#fff0f7" oninput="syncColorFromText('hero_bg',this.value)" placeholder="#fff0f7"/>
+            </div>
+          </div>
+          <!-- Quick Colors -->
+          <div class="quick-colors">
+            <label>ألوان سريعة</label>
+            <div class="quick-colors-grid">
+              <div class="qc" style="background:#e91e8c" onclick="applyQuickColor('#e91e8c','#ff6eb4')" title="وردي"></div>
+              <div class="qc" style="background:#9c27b0" onclick="applyQuickColor('#9c27b0','#ce93d8')" title="بنفسجي"></div>
+              <div class="qc" style="background:#f44336" onclick="applyQuickColor('#f44336','#ef9a9a')" title="أحمر"></div>
+              <div class="qc" style="background:#ff9800" onclick="applyQuickColor('#ff9800','#ffcc80')" title="برتقالي"></div>
+              <div class="qc" style="background:#4caf50" onclick="applyQuickColor('#4caf50','#a5d6a7')" title="أخضر"></div>
+              <div class="qc" style="background:#2196f3" onclick="applyQuickColor('#2196f3','#90caf9')" title="أزرق"></div>
+              <div class="qc" style="background:#009688" onclick="applyQuickColor('#009688','#80cbc4')" title="تركواز"></div>
+              <div class="qc" style="background:#795548" onclick="applyQuickColor('#795548','#bcaaa4')" title="بني"></div>
+              <div class="qc" style="background:#607d8b" onclick="applyQuickColor('#607d8b','#b0bec5')" title="رمادي"></div>
+              <div class="qc" style="background:#000000" onclick="applyQuickColor('#000000','#424242')" title="أسود"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- FONTS -->
+        <div class="customize-card">
+          <h4><i class="fas fa-font"></i> الخط</h4>
+          <div class="font-search-wrap">
+            <input type="text" id="fontSearch" placeholder="🔍 ابحث عن خط..." oninput="searchFont(this.value)" class="font-search-input"/>
+          </div>
+          <div class="fonts-grid" id="fontsGrid"></div>
+          <input type="hidden" id="c_font" value="Tajawal"/>
+          <div class="font-preview-box">
+            <span id="fontPreviewText">HALOULA — مصممة أزياء</span>
+          </div>
+          <!-- Border Radius -->
+          <div class="radius-control">
+            <label>استدارة الأزرار</label>
+            <input type="range" id="c_radius" min="0" max="50" value="50" oninput="previewRadius(this.value)"/>
+            <span id="radiusVal">50px</span>
+          </div>
+        </div>
+
+        <!-- TEXTS -->
+        <div class="customize-card">
+          <h4><i class="fas fa-text-height"></i> النصوص والصور</h4>
+          <div class="text-control">
+            <label>صورة الـ Hero (الصورة الرئيسية)</label>
+            <div class="upload-area" style="margin-bottom:10px">
+              <label class="upload-btn" id="heroImgLabel" for="heroImgFile">
+                🖼️ ارفعي صورة الـ Hero
+              </label>
+              <input type="file" id="heroImgFile" accept="image/*" style="display:none" onchange="uploadHeroImage(this)"/>
+              <img id="heroImgPreview" style="display:none;width:100%;max-height:150px;object-fit:cover;border-radius:10px;margin-top:8px;cursor:zoom-in" onclick="openLightboxAdmin(this.src)"/>
+              <input type="url" id="c_hero_image" placeholder="أو الصق رابط الصورة..." style="margin-top:8px;width:100%;padding:10px;border:1px solid #e0e0e0;border-radius:8px;font-family:'Tajawal',sans-serif;font-size:14px;outline:none" oninput="previewHeroImg(this.value)"/>
+            </div>
+          </div>
+          <div class="text-control">
+            <label>اسم الموقع</label>
+            <input type="text" id="c_site_title" value="HALOULAA" oninput="previewText()"/>
+          </div>
+          <div class="text-control">
+            <label>شارة الهيرو</label>
+            <input type="text" id="c_hero_badge" value="✨ كولكشن 2026" oninput="previewText()"/>
+          </div>
+          <div class="text-control">
+            <label>رابط InstaPay</label>
+            <input type="url" id="c_instapay" value="" placeholder="https://ipn.eg/S/..."/>
+          </div>
+          <div class="text-control">
+            <label>حساب InstaPay (للنسخ)</label>
+            <input type="text" id="c_instapay_account" value="" placeholder="username@instapay"/>
+          </div>
+          <div class="text-control" style="display:flex;align-items:center;justify-content:space-between;background:#f8f8f8;padding:10px 14px;border-radius:10px">
+            <label style="margin:0">تفعيل InstaPay</label>
+            <input type="checkbox" id="c_instapay_enabled" checked class="toggle-switch"/>
+          </div>
+          <div class="text-control">
+            <label>رقم Vodafone Cash</label>
+            <input type="text" id="c_vodafone" value="" placeholder="01xxxxxxxxx"/>
+          </div>
+          <div class="text-control" style="display:flex;align-items:center;justify-content:space-between;background:#f8f8f8;padding:10px 14px;border-radius:10px">
+            <label style="margin:0">تفعيل Vodafone Cash</label>
+            <input type="checkbox" id="c_vodafone_enabled" checked class="toggle-switch"/>
+          </div>
+        </div>
+
+        <!-- SECTIONS VISIBILITY -->
+        <div class="customize-card">
+          <h4><i class="fas fa-eye"></i> إظهار/إخفاء الأقسام</h4>
+          <div class="sections-toggles">
+            <div class="section-toggle"><label>الهيرو</label><input type="checkbox" id="show_hero" checked class="toggle-switch" onchange="previewSection('hero',this.checked)"/></div>
+            <div class="section-toggle"><label>الأقسام</label><input type="checkbox" id="show_categories" checked class="toggle-switch" onchange="previewSection('categories',this.checked)"/></div>
+            <div class="section-toggle"><label>المنتجات</label><input type="checkbox" id="show_products" checked class="toggle-switch" onchange="previewSection('products',this.checked)"/></div>
+            <div class="section-toggle"><label>المميزات</label><input type="checkbox" id="show_features" checked class="toggle-switch" onchange="previewSection('features',this.checked)"/></div>
+            <div class="section-toggle"><label>من نحن</label><input type="checkbox" id="show_about" checked class="toggle-switch" onchange="previewSection('about',this.checked)"/></div>
+            <div class="section-toggle"><label>التقييمات</label><input type="checkbox" id="show_reviews" checked class="toggle-switch" onchange="previewSection('reviews',this.checked)"/></div>
+            <div class="section-toggle"><label>تواصل معنا</label><input type="checkbox" id="show_contact" checked class="toggle-switch" onchange="previewSection('contact',this.checked)"/></div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- SAVED PRESETS -->
+      <div class="presets-section">
+        <div class="presets-header">
+          <h4><i class="fas fa-bookmark"></i> الثيمات المحفوظة</h4>
+          <button class="btn-admin-primary small" onclick="saveAsPreset()"><i class="fas fa-plus"></i> حفظ كثيم جديد</button>
+        </div>
+        <div class="presets-grid" id="presetsGrid"></div>
+      </div>
+    </section>
+
+    <!-- SETTINGS -->
+    <section id="section-settings" class="dash-section d-none">
+      <div class="form-card">
+        <h3>⚙️ إعدادات الموقع</h3>
+        <div class="form-grid">
+          <div class="form-group full">
+            <label>رقم واتساب</label>
+            <input type="text" id="settingWA" value="201021102607"/>
+          </div>
+          <div class="form-group full">
+            <label>رابط InstaPay</label>
+            <input type="url" id="settingInstapay" value="https://ipn.eg/S/mohandehaben932/instapay/9FLI7y"/>
+          </div>
+          <div class="form-group full">
+            <label>رقم Vodafone Cash</label>
+            <input type="text" id="settingVFCash" placeholder="مثال: 01021102607"/>
+            <small style="color:#888;font-size:12px">رقم الهاتف اللي بيستقبل فودافون كاش</small>
+          </div>
+          <div class="form-group full">
+            <label>تغيير كلمة مرور الأدمن</label>
+            <input type="password" id="newPassword" placeholder="كلمة المرور الجديدة"/>
+          </div>
+        </div>
+        <button class="btn-admin-primary" onclick="saveSettings()">
+          <i class="fas fa-save"></i> حفظ الإعدادات
+        </button>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<script src="../js/supabase-config.js"></script>
+<script type="module" src="admin.js"></script>
+
+<!-- LIGHTBOX -->
+<div id="adminLightbox" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.92);z-index:9999;align-items:center;justify-content:center;padding:20px;cursor:zoom-out;" onclick="closeAdminLightbox()">
+  <button style="position:fixed;top:20px;left:20px;background:rgba(255,255,255,.15);color:#fff;border:none;width:44px;height:44px;border-radius:50%;font-size:20px;cursor:pointer;" onclick="closeAdminLightbox()">✕</button>
+  <img id="adminLightboxImg" src="" style="max-width:90vw;max-height:90vh;border-radius:12px;object-fit:contain;cursor:default;" onclick="event.stopPropagation()"/>
+</div>
+</body>
+</html>
